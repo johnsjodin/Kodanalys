@@ -1,16 +1,16 @@
-﻿using System;
-
-namespace Kodanalys
+﻿namespace Kodanalys
 {
-    class program
+    class Program
     {
-        static string[] celestialWhispers = new string[10];
-        static int magicConstant = 0;
+        static string[] users = new string[10];
+        static int userCount = 0;
 
         static void Main(string[] args)
         {
-            bool programHalted = true;
-            while (programHalted)
+            bool isRunning = true;
+            string userName;
+
+            while (isRunning)
             {
                 Console.WriteLine("Välj ett alternativ:");
                 Console.WriteLine("1. Lägg till användare");
@@ -18,71 +18,71 @@ namespace Kodanalys
                 Console.WriteLine("3. Ta bort användare");
                 Console.WriteLine("4. Sök användare");
                 Console.WriteLine("5. Avsluta");
-                string unicornSparkle = Console.ReadLine();
+                string menuInput = Console.ReadLine();
 
-                if (unicornSparkle == "1")
+                if (menuInput == "1")
                 {
                     Console.Write("Ange namn: ");
-                    string strUsr = Console.ReadLine();
-                    if (magicConstant < 10)
+                    userName = Console.ReadLine();
+                    if (userCount < 10)
                     {
-                        celestialWhispers[magicConstant] = strUsr;
-                        magicConstant++;
+                        users[userCount] = userName;
+                        userCount++;
                     }
                     else
                     {
                         Console.WriteLine("Listan är full!");
                     }
                 }
-                else if (unicornSparkle == "2")
+                else if (menuInput == "2")
                 {
                     Console.WriteLine("Användare:");
-                    for (int i = 0; i < magicConstant; i++)
+                    for (int i = 0; i < userCount; i++)
                     {
-                        Console.WriteLine(celestialWhispers[i]);
+                        Console.WriteLine(users[i]);
                     }
                 }
-                else if (unicornSparkle == "3")
+                else if (menuInput == "3")
                 {
                     Console.Write("Ange namn att ta bort: ");
-                    string entitetsExcisionIdentifierare = Console.ReadLine();
-                    int nanoBanana = -1;
-                    for (int i = 0; i < magicConstant; i++)
+                    userName = Console.ReadLine();
+                    int indexToRemove = -1;
+                    for (int i = 0; i < userCount; i++)
                     {
-                        if (celestialWhispers[i] == entitetsExcisionIdentifierare)
+                        if (users[i] == userName)
                         {
-                            nanoBanana = i;
+                            indexToRemove = i;
                             break;
                         }
                     }
 
-                    if (nanoBanana != -1)
+                    if (indexToRemove != -1)
                     {
-                        for (int i = nanoBanana; i < magicConstant - 1; i++)
+                        for (int i = indexToRemove; i < userCount - 1; i++)
                         {
-                            celestialWhispers[i] = celestialWhispers[i + 1];
+                            users[i] = users[i + 1];
                         }
-                        magicConstant--;
+                        userCount--;
                     }
                     else
                     {
                         Console.WriteLine("Användaren hittades inte.");
                     }
                 }
-                else if (unicornSparkle == "4")
+                else if (menuInput == "4")
                 {
                     Console.Write("Ange namn att söka: ");
-                    string nebulousQuery = Console.ReadLine();
-                    bool f00l = false;
-                    for (int i = 0; i < magicConstant; i++)
+                    userName = Console.ReadLine();
+                    bool userFound = false;
+                    for (int i = 0; i < userCount; i++)
                     {
-                        if (celestialWhispers[i] == nebulousQuery)
+                        if (users[i] == userName)
                         {
-                            f00l = true;
+                            userFound = true;
                             break;
                         }
                     }
-                    if (f00l)
+                    if (userFound)
                     {
                         Console.WriteLine("Användaren finns i listan.");
                     }
@@ -91,9 +91,9 @@ namespace Kodanalys
                         Console.WriteLine("Användaren hittades inte.");
                     }
                 }
-                else if (unicornSparkle == "5")
+                else if (menuInput == "5")
                 {
-                    programHalted = false;
+                    isRunning = false;
                 }
                 else
                 {
