@@ -19,11 +19,12 @@ namespace Kodanalys
                 Console.WriteLine("3. Ta bort användare");
                 Console.WriteLine("4. Sök användare");
                 Console.WriteLine("5. Avsluta");
-                string menuInput = Console.ReadLine();
+                int menuInput = int.Parse(Console.ReadLine());
+                Menu option = (Menu)menuInput;
 
-                switch (menuInput)
+                switch (option)
                 {
-                    case "1":
+                    case Menu.AddUser:
                         Console.Write("Ange namn: ");
                         userName = Console.ReadLine();
                         if (userName != null)
@@ -33,7 +34,7 @@ namespace Kodanalys
                         }
                         break;
 
-                    case "2":
+                    case Menu.ShowUsers:
                         Console.WriteLine("Användare:");
                         foreach (var user in users)
                         {
@@ -41,7 +42,7 @@ namespace Kodanalys
                         }
                         break;
 
-                    case "3":
+                    case Menu.RemoveUser:
                         Console.Write("Ange namn att ta bort: ");
                         userName = Console.ReadLine();
                         foreach (var user in users)
@@ -60,7 +61,7 @@ namespace Kodanalys
                         }
                         break;
 
-                    case "4":
+                    case Menu.SearchUser:
                         Console.Write("Ange namn att söka: ");
                         userName = Console.ReadLine();
 
@@ -71,10 +72,15 @@ namespace Kodanalys
                                 Console.WriteLine($"Användaren hittades: {user.Name}");
                                 break;
                             }
+                            else
+                            {
+                                Console.WriteLine("Användaren hittades inte.");
+                                break;
+                            }
                         }
                         break;
 
-                    case "5":
+                    case Menu.Exit:
                         isRunning = false;
                         break;
 
