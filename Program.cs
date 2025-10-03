@@ -20,85 +20,84 @@
                 Console.WriteLine("5. Avsluta");
                 string menuInput = Console.ReadLine();
 
-                if (menuInput == "1")
+                switch (menuInput)
                 {
-                    Console.Write("Ange namn: ");
-                    userName = Console.ReadLine();
-                    if (userCount < 10)
-                    {
-                        users[userCount] = userName;
-                        userCount++;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Listan är full!");
-                    }
-                }
-                else if (menuInput == "2")
-                {
-                    Console.WriteLine("Användare:");
-                    for (int i = 0; i < userCount; i++)
-                    {
-                        Console.WriteLine(users[i]);
-                    }
-                }
-                else if (menuInput == "3")
-                {
-                    Console.Write("Ange namn att ta bort: ");
-                    userName = Console.ReadLine();
-                    int indexToRemove = -1;
-                    for (int i = 0; i < userCount; i++)
-                    {
-                        if (users[i] == userName)
+                    case "1":
+                        Console.Write("Ange namn: ");
+                        userName = Console.ReadLine();
+                        if (userCount < users.Length)
                         {
-                            indexToRemove = i;
-                            break;
+                            users[userCount] = userName;
+                            userCount++;
                         }
-                    }
+                        else
+                        {
+                            Console.WriteLine("Listan är full!");
+                        }
+                        break;
 
-                    if (indexToRemove != -1)
-                    {
-                        for (int i = indexToRemove; i < userCount - 1; i++)
+                    case "2":
+                        Console.WriteLine("Användare:");
+                        for (int i = 0; i < userCount; i++)
                         {
-                            users[i] = users[i + 1];
+                            Console.WriteLine(users[i]);
                         }
-                        userCount--;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Användaren hittades inte.");
-                    }
-                }
-                else if (menuInput == "4")
-                {
-                    Console.Write("Ange namn att söka: ");
-                    userName = Console.ReadLine();
-                    bool userFound = false;
-                    for (int i = 0; i < userCount; i++)
-                    {
-                        if (users[i] == userName)
+                        break;
+
+                    case "3":
+                        Console.Write("Ange namn att ta bort: ");
+                        userName = Console.ReadLine();
+                        int indexToRemove = -1;
+                        for (int i = 0; i < userCount; i++)
                         {
-                            userFound = true;
-                            break;
+                            if (users[i] == userName)
+                            {
+                                indexToRemove = i;
+                                break;
+                            }
                         }
-                    }
-                    if (userFound)
-                    {
-                        Console.WriteLine("Användaren finns i listan.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Användaren hittades inte.");
-                    }
+
+                        if (indexToRemove != -1)
+                        {
+                            for (int i = indexToRemove; i < userCount - 1; i++)
+                            {
+                                users[i] = users[i + 1];
+                            }
+                            userCount--;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Användaren hittades inte.");
+                        }
+                        break;
+
+                    case "4":
+                        Console.Write("Ange namn att söka: ");
+                        userName = Console.ReadLine();
+                        
+                        for (int i = 0; i < userCount; i++)
+                        {
+                            if (users[i] == userName)
+                            {
+                                Console.WriteLine("Användaren finns i listan.");
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Användaren hittades inte.");
+                            }
+                        }
+                        break;
+
+                    case "5":
+                        isRunning = false;
+                        break;
+
+                    default:
+                        Console.WriteLine("Ogiltigt val.");
+                        break;
                 }
-                else if (menuInput == "5")
-                {
-                    isRunning = false;
-                }
-                else
-                {
-                    Console.WriteLine("Ogiltigt val.");
-                }
+
                 Console.WriteLine();
             }
         }
