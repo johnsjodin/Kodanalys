@@ -28,3 +28,8 @@ Andra committen: Analys av kodstrukturen
   och minskar risken för felaktiga inmatningar.
 - För att implementera dessa förändringar krävs en refaktorering av hela programmet, t.ex. nya metoder för att hantera
   användare, menyhantering etc. men det skulle göra koden mycket mer strukturerad och lättare att skala upp i framtiden.
+
+Tredje committen: Implementering av förbättringar
+- Skapat en List<User> för att hantera användare istället för en array av strings.
+- Refaktorerat koden i switch-casen för att hantera objekt av typen User.
+- Bytt ut for-looparna i switchen mot foreach-loopar som passar bättre för Listor och arrayer.

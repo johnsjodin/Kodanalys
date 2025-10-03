@@ -1,9 +1,10 @@
-﻿namespace Kodanalys
+﻿using Kodanalys.Models;
+
+namespace Kodanalys
 {
     class Program
     {
-        static string[] users = new string[10];
-        static int userCount = 0;
+        static List<User> users = new List<User>();
 
         static void Main(string[] args)
         {
@@ -25,66 +26,50 @@
                     case "1":
                         Console.Write("Ange namn: ");
                         userName = Console.ReadLine();
-                        if (userCount < users.Length)
+                        if (userName != null)
                         {
-                            users[userCount] = userName;
-                            userCount++;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Listan är full!");
+                            User user = new User { Name = userName };
+                            users.Add(user);
                         }
                         break;
 
                     case "2":
                         Console.WriteLine("Användare:");
-                        for (int i = 0; i < userCount; i++)
+                        foreach (var user in users)
                         {
-                            Console.WriteLine(users[i]);
+                            Console.WriteLine(user.Name);
                         }
                         break;
 
                     case "3":
                         Console.Write("Ange namn att ta bort: ");
                         userName = Console.ReadLine();
-                        int indexToRemove = -1;
-                        for (int i = 0; i < userCount; i++)
+                        foreach (var user in users)
                         {
-                            if (users[i] == userName)
+                            if (user.Name == userName)
                             {
-                                indexToRemove = i;
+                                users.Remove(user);
+                                Console.WriteLine("Användaren togs bort.");
                                 break;
                             }
-                        }
-
-                        if (indexToRemove != -1)
-                        {
-                            for (int i = indexToRemove; i < userCount - 1; i++)
+                            else
                             {
-                                users[i] = users[i + 1];
+                                Console.WriteLine("Användaren hittades inte.");
+                                break;
                             }
-                            userCount--;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Användaren hittades inte.");
                         }
                         break;
 
                     case "4":
                         Console.Write("Ange namn att söka: ");
                         userName = Console.ReadLine();
-                        
-                        for (int i = 0; i < userCount; i++)
+
+                        foreach (var user in users)
                         {
-                            if (users[i] == userName)
+                            if (user.Name == userName)
                             {
-                                Console.WriteLine("Användaren finns i listan.");
+                                Console.WriteLine($"Användaren hittades: {user.Name}");
                                 break;
-                            }
-                            else
-                            {
-                                Console.WriteLine("Användaren hittades inte.");
                             }
                         }
                         break;
